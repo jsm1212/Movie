@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+		<!--주석문 지시문 설정  -->
+		<context:annotation-config />
+		
+		<!-- 뷰 위치 설정, 확장자 명 설정 -->
+		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>	<!-- views의 경로 -->
+		<property name="suffix" value=".jsp"></property>			<!-- 확장자 명 -->	
+		</bean>
+		
+		<!-- 자바 공동 패키지 -->
+		<context:component-scan base-package="mul.camp.a" />
+		
+		<!-- ajax 주석문 사용허가 세팅 -->
+		<mvc:annotation-driven />
+		
+		<!-- spring에서 처리할 수 없는 요청은 tomcat에 위임 -->
+		<mvc:default-servlet-handler/>
+		
+</beans>
