@@ -4,15 +4,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입</title>
 
+<!-- jqeury, bootstrap 사용을 위해 code 추가 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- CSS -->
 <style type="text/css">
-.center{
-	margin: auto;
-	width: 60%;
-	border: 3px solid #0000ff;
-	padding: 10px;
-}
+	body {
+		min-height: 100vh;
+		background: -webkit-gradient(linear, left bottom, right top, from(#B3D7D9), to(#1B6B64)); 
+		background: -webkit-linear-gradient(bottom left, #92b5db 0%, #B3D7D9 100%); 
+		background: -moz-linear-gradient(bottom left, #92b5db 0%, #B3D7D9 100%); 
+		background: -o-linear-gradient(bottom left, #92b5db 0%, #B3D7D9 100%); 
+		background: linear-gradient(to top right, #92b5db 0%, #B3D7D9 100%);
+	}
+	
+	.input-form { 
+		max-width: 680px; 
+		margin-top: 80px; 
+		padding: 32px; 
+		background: #fff; 
+		-webkit-border-radius: 10px; 
+		-moz-border-radius: 10px; 
+		border-radius: 10px; 
+		-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15); 
+		-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15); 
+		box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) 
+	}
+	
+	input::placeholder {
+		font-size: 12px;
+	}
+	
+	button {
+		margin-top: 10px;
+		cursor: pointer;
+		width: 100%;
+		font-size: 16px;
+		padding: 7px 20px;
+	}
+	
+	duplBtn {
+		border: 0;
+		letter-spacing: 2px;
+		margin-top: 5px;
+	}
+	
+	
 </style>
 
 <!-- jquery 사용을 위해 추가 -->
@@ -21,77 +66,68 @@
 </head>
 <body>
 
-<h2>회원가입</h2>
+   <div class="container">
+      <div class="input-form-background row">
+         <div class="input-form col-md-12 mx-auto">
+            <h4 class="mb-3">회원가입</h4>
+            <form id="frm" action="regiAf.do" method="post">
+               <div class="row">
+               
+                  <div class="col-md-6 mb-3">
+                     <label for="id">아이디</label>
+                     <input type="text" class="form-control" name="id" id="id">
+                     <!-- * ID 중복확인 -->
+                     <input type="button" id="btn" value="중복확인">
+                     <label id="idcheck" style="font-size: 13px"></label>
+                  </div>
 
-<div class="center">
-<form action="regiAf.do" id="frm" method="post">
+                  <div class="col-md-6 mb-3">
+                     <label for="nickname">닉네임</label>
+                     <input type="text" class="form-control" name="nickname" id="nickname">
+                     <!-- * 닉네임 중복확인 -->
+                     <input type="button" id="nickbtn" value="중복확인">
+                     <label id="nickcheck" style="font-size: 13px"></label>
+                  </div>
+                  
+                  <div class="col-md-6 mb-3">
+                  	<label for="name">이름</label>
+                  	<input type="text" class="form-control" name="name" id="name">
+                  </div>
+                  
+                  <div class="col-md-6 mb-3">
+                  	<label for="age">나이</label>
+                  	<input type="text" class="form-control" name="age" id="age">
+                  </div>
+                  
+               </div>
+               
+               <div class="mb-3">
+					<label for="gender">성별</label>
+					<br>
+					<input type="radio" name="gender" id="gender" value=0>남자
+					<input type="radio" name="gender" id="gender" value=1>여자
+				</div>
+               
+               <div class="mb-3">
+					<label for="password">비밀번호</label>
+					<input type="password" class="form-control" name="pwd" id="pwd" placeholder="영문/숫자/특수문자 포함 8-16자리">
+				</div>
+				
+				<div class="mb-3">
+                  <label for="email">이메일</label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+                  <!-- * 이메일 중복확인 -->
+                  <input type="button" id="emailbtn" value="중복확인">
+                  <label id="emailcheck" style="font-size: 13px"></label>
+               </div>
+               
+               <div class="mb-3"></div>
+               <button type="button" onclick="account()">회원가입</button>
+            </form>
+         </div>
+      </div>
+   </div>
 
-<table border="1">
-<tr>
-	<th>아이디</th>
-	<td>
-		<input type="text" name="id" id="id" size="20">
-		<!-- * id 중복확인 -->
-		&nbsp; <input type="button" id="btn" value="중복확인"><br>
-		<!-- id 중복확인 결과가 출력될 부분 --> <p id="idcheck" style="font-size: 8px"></p>
-	</td>
-</tr>
-<tr>
-	<th>패스워드</th>
-	<td>
-		<input type="password" name="pwd" id="pwd" size="20">
-		<p style="font-size: 11px; color:#2BC0DB;">
-		※ 패스워드는 영문, 숫자, 특수문자를 포함하여 8 ~ 16자리로 설정하여 주십시오.
-		</p>
-	</td>
-</tr>
-<tr>
-	<th>이름</th>
-	<td>
-		<input type="text" name="name" id="name" size="20">
-	</td>
-</tr>
-<tr>
-	<th>닉네임</th>
-	<td>
-		<input type="text" name="nickname" id="nickname" size="20">
-		<!-- 닉네임 중복확인 -->
-		&nbsp; <input type="button" id="nickbtn" value="중복확인"><br>
-		<!-- 닉네임 중복확인 결과가 출력될 부분 --> <p id="nickcheck" style="font-size: 8px"></p>
-	</td>
-</tr>
-<tr>
-	<th>나이</th>
-	<td>
-		<input type="text" name="age" id="age" size="20">
-	</td>
-</tr>
-<tr>
-	<th>성별</th>
-	<td>
-		<input type="radio" name="gender" id="gender" value=0>남자
-		<input type="radio" name="gender" id="gender" value=1>여자
-	</td>
-</tr>
-<tr>
-	<th>이메일</th>
-	<td>
-		<input type="text" name="email" id="email" size="20">
-		<!-- 이메일 중복확인 -->
-		&nbsp; <input type="button" id="emailbtn" value="중복확인"><br>
-		<!-- 이메일 중복확인 결과가 출력될 부분 --> <p id="emailcheck" style="font-size: 8px"></p>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<!-- 회원가입 시 필요한 정보가 하나라도 없다면 데이터를 전달하지 않게 설정: 클릭 시 account() 함수 실행 -->
-		<button type="button" onclick="account()">회원가입</button>
-	</td>
-</tr>
-</table>
-
-</form>
-</div>
 
 <script type="text/javascript">
 var id_check = false;			/* id 중복확인 결과값 저장을 위한 javascript 전역변수 */
@@ -191,10 +227,8 @@ var checkString = /^[A-Za-z가-힣]*$/;
 if($("#id").val().trim() == ''){ 
 		alert("아이디를 입력해 주십시오");
 	}
-	// 패스워드 작성규칙 검사
-	else if(!pwdRule.test($('#pwd').val().trim())){
-		alert("패스워드 작성규칙에 맞게 작성해주십시오.")
-		$("#pwd").val("");
+	else if($("#nickname").val().trim() == ''){
+		alert("닉네임을 입력해 주십시오.");
 	}
 	else if($("#name").val().trim() == ''){
 		alert("이름을 작성해 주십시오.")
@@ -204,9 +238,6 @@ if($("#id").val().trim() == ''){
 		alert("이름은 영어 또는 한글로만 입력해주십시오.")
 		$("#name").val("");
 	}
-	else if($("#nickname").val().trim() == ''){
-		alert("닉네임을 입력해 주십시오.");
-	}
 	else if($("#age").val().trim() == ''){
 		alert("나이를 입력해 주십시오.");
 	}
@@ -215,8 +246,14 @@ if($("#id").val().trim() == ''){
 		alert("나이는 숫자로만 입력해주십시오.")
 		$("#age").val("");
 	}
-	else if($("#gender").val() == ''){
-		alert("성별을 선택해 주십시오.");
+	//성별 체크확인 여부
+	else if($(':radio[name="gender"]:checked').length < 1){
+		alert("성별을 선택해 주십시오.")
+	}
+	// 패스워드 작성규칙 검사
+	else if(!pwdRule.test($('#pwd').val().trim())){
+		alert("패스워드 작성규칙에 맞게 작성해주십시오.")
+		$("#pwd").val("");
 	}
 	// 이메일 형식 검사
 	else if(!emailRule.test($('#email').val().trim())){
@@ -234,10 +271,6 @@ if($("#id").val().trim() == ''){
 	// EMAIL 중복확인 여부 확인
 	else if(email_check != true){
 		alert("이메일 중복확인을 진행해 주십시오.");
-	}
-	// 성별 체크확인 여부
-	else if($(':radio[name="gender"]:checked').length < 1){
-		alert("성별을 선택해 주십시오.")
 	}
 	else {
 		$("#frm").submit();				// 회원가입 form id="frm"
