@@ -11,44 +11,36 @@ public class ValChecker {
 
     private static final Logger LOG = LoggerFactory.getLogger(ValChecker.class);
 
-    
-    // 값이 안들어오면 fail로 return
-	public String checkSimple(String value){
-	
-	    if(StringUtils.isEmpty(value)){
+    // null 값 들어오면 문자열로 반환
+    public String checkEmpty (Object object) {
+        if(object == null){
+            object = "null";
+        }
+        else if(StringUtils.isEmpty(object)){
 	        LOG.info("Null 값");
 	        return "false";
 	    }
-	    value = value.toUpperCase();
-	    String num = value.substring(0,3);
-	    String var = value.substring(4,4);
-	    Pattern p1 = Pattern.compile("^[0-9]*$");
-	    Pattern p2 = Pattern.compile("^[A-Z]*$");
-	    Matcher m1 = p1.matcher(num);
-	    Matcher m2 = p2.matcher(var);
-	    if(!m1.find() || !m2.find()){
-	        LOG.info("패턴 검증 에러");
-	        return "false";
-	    }
-	    return value;
-	}
+        return String.valueOf(object);
+    }
 	
 	// 패스워드
     public String checkPassword(String value){
         try{
             value = value.replace(" ", "");
-            Pattern p1 = Pattern.compile("[A-Z]");
-            Pattern p2 = Pattern.compile("[a-z]");
-            Pattern p3 = Pattern.compile("[0-9]");
-            Pattern p4 = Pattern.compile("[`~!@#$%^&*|\'\";:/?]");
-            Pattern p5 = Pattern.compile("{8,16}");
-            Matcher m1 = p1.matcher(value);
-            Matcher m2 = p2.matcher(value);
-            Matcher m3 = p3.matcher(value);
-            Matcher m4 = p4.matcher(value);
-            Matcher m5 = p5.matcher(value);
-            if(!m1.find() || !m2.find() || !m3.find() || !m4.find() || !m5.find()){
+			/*
+			 * Pattern p1 = Pattern.compile("[A-Z]"); Pattern p2 = Pattern.compile("[a-z]");
+			 * Pattern p3 = Pattern.compile("[0-9]"); Pattern p4 =
+			 * Pattern.compile("[`~!@#$%^&*|\'\";:/?]"); Pattern p5 =
+			 * Pattern.compile("{7,15}"); Matcher m1 = p1.matcher(value); Matcher m2 =
+			 * p2.matcher(value); Matcher m3 = p3.matcher(value); Matcher m4 =
+			 * p4.matcher(value); Matcher m5 = p5.matcher(value);
+			 */
+            Pattern p = Pattern.compile("^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\\\(\\\\)\\-_=+]).{8,16}$");
+            Matcher m = p.matcher(value);
+            
+            if(!m.find()){
                 LOG.info("유효하지 않은 비밀번호");
+                LOG.info(value);
                 return "false";
             }else{
                 return value;
@@ -192,13 +184,27 @@ public class ValChecker {
         return value;
 
     }
+    
+    public String checkSimple(String value){
+    	
+	    if(StringUtils.isEmpty(value)){
+	        LOG.info("Null 값");
+	        return "false";
+	    }
+	    value = value.toUpperCase();
+	    String num = value.substring(0,3);
+	    String var = value.substring(4,4);
+	    Pattern p1 = Pattern.compile("^[0-9]*$");
+	    Pattern p2 = Pattern.compile("^[A-Z]*$");
+	    Matcher m1 = p1.matcher(num);
+	    Matcher m2 = p2.matcher(var);
+	    if(!m1.find() || !m2.find()){
+	        LOG.info("패턴 검증 에러");
+	        return "false";
+	    }
+	    return value;
+	}
 
-    // null 값 들어오면 문자열로 반환
-    public String checkEmpty (Object object) {
-        if(object == null){
-            object = "null";
-        }
-        return String.valueOf(object);
-    }
+    
 
 }
