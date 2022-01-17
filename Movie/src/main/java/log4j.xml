@@ -11,7 +11,8 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="mul.camp.a">
+	<!-- !!!!!!! 패키지명 확인 -->
+	<logger name="mul.camp.seven">
 		<level value="info" />
 	</logger>
 	

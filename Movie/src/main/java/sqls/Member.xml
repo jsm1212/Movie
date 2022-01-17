@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- mybatis: 자바의 객체(Object)와 SQL 사이에서 자동 맵핑을 도와주는 프레임워크 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="MovieMember">
+
+<!-- [idcheck.do] > ID 중복확인 -->
+<select id="duplId" parameterType="String" resultType="Integer">
+ 	SELECT COUNT(*)
+ 	FROM LOGINMEMBER
+ 	WHERE ID=#{id}
+</select>
+
+<!-- [nikcheck.do] > 닉네임 중복확인 -->
+<select id="duplNick" parameterType="String" resultType="Integer">
+ 	SELECT COUNT(*)
+ 	FROM LOGINMEMBER
+ 	WHERE NICKNAME=#{nickname}
+</select>
+
+<!-- [emailcheck.do] > 이메일 중복확인 -->
+<select id="duplEmail" parameterType="String" resultType="Integer">
+ 	SELECT COUNT(*)
+ 	FROM LOGINMEMBER
+ 	WHERE EMAIL=#{email}
+</select>
+
+<!-- [regiAf.do] > 회원가입 -->
+<insert id="regiMember" parameterType="mul.camp.seven.dto.MemberDto">
+ 	INSERT INTO LOGINMEMBER(ID, PWD, NAME, NICKNAME, AGE, GENDER, EMAIL, REGI_DATE)
+ 	VALUES(#{id}, #{pwd}, #{name}, #{nickname}, #{age}, #{gender}, #{email}, SYSDATE)
+</insert>
+
+<!-- [loginAf.do] > 로그인 -->
+<select id="login" parameterType="mul.camp.seven.dto.MemberDto" resultType="mul.camp.seven.dto.MemberDto">
+ 	SELECT ID, NAME, NICKNAME, AGE, GENDER, EMAIL, REGI_DATE
+ 	FROM LOGINMEMBER
+ 	WHERE ID=#{id} AND PWD=#{pwd}
+</select>
+
+</mapper>

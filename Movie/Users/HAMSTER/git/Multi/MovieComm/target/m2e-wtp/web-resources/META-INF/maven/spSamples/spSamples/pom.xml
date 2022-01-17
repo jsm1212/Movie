@@ -289,13 +289,6 @@
 	    <version>20190722</version>
 	</dependency>
 	
-	<dependency>
-  <!-- jsoup HTML parser library @ https://jsoup.org/ -->
-  <groupId>org.jsoup</groupId>
-  <artifactId>jsoup</artifactId>
-  <version>1.14.3</version>
-</dependency>
-	
   </dependencies>
   
   <!-- DB 사용을 위해 추가 / maven.txt 참고 -->

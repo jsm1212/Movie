@@ -20,25 +20,27 @@
     </plugins>
   </build>
   
-   <dependencies>
+  <dependencies>
+  
   	<dependency>
-    	<groupId>org.springframework</groupId>
-    	<artifactId>spring-webmvc</artifactId>
-    	<version>5.3.13</version>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.3.13</version>
 	</dependency>
 	
 	<dependency>
-    	<groupId>log4j</groupId>
-    	<artifactId>log4j</artifactId>
-    	<version>1.2.17</version>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
 	</dependency>
 	
 	<dependency>
-    	<groupId>org.slf4j</groupId>
-    	<artifactId>slf4j-simple</artifactId>
-   		<version>1.7.32</version>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>1.7.32</version>
 	</dependency>
 	
+	<!-- DB 사용을 위해 추가 / maven.txt 파일 참고 -->
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>servlet-api</artifactId>
@@ -141,13 +143,6 @@
   		<artifactId>slf4j-api</artifactId>
   		<version>1.7.30</version>
   	</dependency>
-
-	<!-- log4j -->
-  	<!-- <dependency>
-  		<groupId>ant</groupId>
-  		<artifactId>ant-apache-log4j</artifactId>
-  		<version>1.9.4</version>
-  	</dependency> -->
   	
   	<dependency>
 	    <groupId>commons-dbcp</groupId>
@@ -251,8 +246,9 @@
   		<artifactId>spring-web</artifactId>
   		<version>5.3.13</version>
   	</dependency>
+  	<!--  -->
 	
-	
+	<!-- Ajax를 위해 필요함, Ajax용 jre 파일 -->
 	<!-- Java용 json 라이브러리(XML/YAM/CSV) data-processing 툴 -->
   	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
@@ -266,6 +262,8 @@
 	    <version>2.10.1</version>
 	</dependency>
 	
+	
+	<!-- DB 사용을 위해 추가 / maven.text 파일 참고 -->
 	<dependency>
 	    <groupId>org.aspectj</groupId>
 	    <artifactId>aspectjweaver</artifactId>
@@ -285,20 +283,27 @@
 	    <version>11.2.0.4</version>
 	</dependency>
 	
-	
 	<dependency>
 	    <groupId>org.json</groupId>
 	    <artifactId>json</artifactId>
 	    <version>20190722</version>
 	</dependency>
 	
+	<dependency>
+  <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+  <groupId>org.jsoup</groupId>
+  <artifactId>jsoup</artifactId>
+  <version>1.14.3</version>
+</dependency>
 	
   </dependencies>
   
-  <repositories>
-  	<repository>
-		<id>codelds</id>		<!-- ojdbc6 와 함께 추가 -->
-		<url>https://code.lds.org/nexus/content/groups/main-repo</url>
-	</repository>
-</repositories>
+  <!-- DB 사용을 위해 추가 / maven.txt 참고 -->
+	<repositories>
+  		<repository>
+			<id>codelds</id>		<!-- ojdbc6 와 함께 추가 -->
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
+	</repositories>
+	
 </project>

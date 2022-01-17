@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Movie</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-<%
-	response.sendRedirect("login.do");
-%>
+<h1>bbslist</h1>
+<h1>로그인 성공! 😊<h1>
 
+<a href="contact.do">Contact us</a>
 </body>
 </html>
