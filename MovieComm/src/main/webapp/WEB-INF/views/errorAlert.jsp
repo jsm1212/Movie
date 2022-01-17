@@ -8,7 +8,13 @@
 </head>
 <body>
 
-<h2>🔎 ID 찾기 페이지</h2>
+<script type="text/javascript">
+	var message = '${msg}';
+	var returnUrl = '${url}';
+	alert(message);
+	
+	document.location.href = returnUrl;
+</script>
 
 </body>
 </html>

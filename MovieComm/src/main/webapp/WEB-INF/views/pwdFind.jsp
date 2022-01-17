@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h2>🔎 ID 찾기 페이지</h2>
+<h2>🔎 PW 찾기 페이지</h2>
 
 </body>
 </html>
