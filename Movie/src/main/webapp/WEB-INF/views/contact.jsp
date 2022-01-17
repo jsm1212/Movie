@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-List<ContactDto>contact = (List<ContactDto>)request.getAttribute("contactlist");
+List<ContactDto> contact = (List<ContactDto>)request.getAttribute("contact");
 %>    
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@ List<ContactDto>contact = (List<ContactDto>)request.getAttribute("contactlist");
 	<option value="writer">작성자</option>
 </select>
 
-<input type="text" id="search" value="내용을 입력해주세요.">
+<input type="text" id="search" value="">
 
 <button type="button" onclick="searchContact()">검색</button>
 
@@ -56,7 +56,7 @@ if(contact == null || contact.size() == 0){
 		<tr>	
 			<th><%=i+1 %></th>
 			<td>
-				<a href="bbsdetail.do?seq=<%=contactlist.getSeq() %>"> <!-- bbsdetail.jsp 가는데 sequence 갖고감 -->
+				<a href="contactdetail.do?seq=<%=contactlist.getSeq() %>">
 					<%=contactlist.getTitle() %>
 				</a>
 			</td>
@@ -73,7 +73,7 @@ if(contact == null || contact.size() == 0){
 </div>
 
 <div align="center">
-	<a href="contactwrite.do">글쓰기</a>
+	<a href="contactwrite.do">문의하기</a>
 </div>
 
 <script type="text/javascript">
@@ -81,7 +81,7 @@ function searchContact() {
 	let choice = document.getElementById("choice").value;
 	let search = document.getElementById("search").value;
 	
-	location.href = "bbslist.do?choice=" + choice + "&search=" + search;
+	location.href = "contact.do?choice=" + choice + "&search=" + search;
 }
 
 </script> 

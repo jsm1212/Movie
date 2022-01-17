@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>MovieComm</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- web.xml: project가 시작되면 제일 먼저 reading하는 파일 따라서 여기에 초기설정을 해야함 -->
+  
+  <!-- 만든 servlet-context를 인식시켜주기 위한 준비작업 -->
+  <servlet>
+  	<servlet-name>dispatcherServlet</servlet-name>
+  	<servlet-class>
+  		org.springframework.web.servlet.DispatcherServlet
+  	</servlet-class>
+  	
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>
+  			/WEB-INF/spring/servlet-context.xml
+  		</param-value>
+  	</init-param>
+  	
+  	<load-on-startup>1</load-on-startup>	<!-- 1번째로 실행하라는 의미 -->
+  	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>dispatcherServlet</servlet-name>
+  	<!-- <url-pattern>/</url-pattern> -->
+  	<url-pattern>*.do</url-pattern>		<!-- .do 링크는 무조건 controller로 이동 -->
+  </servlet-mapping>
+  
+  
+  <!-- DB 관련 세팅 (applicationContext 인식) -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>
+  		/WEB-INF/spring/applicationContext.xml
+  	</param-value>
+  </context-param>
+  
+  <!-- 버튼, url 등 언제 접속될 지 checking하고 있어야 한다 > 듣고 있어야한다. > listener -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  
+  <!-- 한글설정 -->
+  <filter>
+  	<filter-name>encodingFilter</filter-name>
+  	<filter-class>
+  		org.springframework.web.filter.CharacterEncodingFilter
+  	</filter-class>
+  	
+  	<init-param>	<!-- param: parameter -->
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  	
+  	<init-param>
+  		<param-name>forceEncoding</param-name>
+  		<param-value>true</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>	<!-- /*는 모든 url에 적용해라라는 의미 -->
+  </filter-mapping>
+  
+</web-app>

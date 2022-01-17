@@ -25,4 +25,10 @@
 	VALUES(CONTACT_SEQ.NEXTVAL, #{id}, #{title}, #{content}, 0, SYSDATE, 0)
 </insert>
 
+<select id="contactget" parameterType="java.lang.Integer" resultType="mul.camp.seven.dto.ContactDto">
+	SELECT CONTACT_SEQ, ID, TITLE, CONTENT, ANSWER, WDATE, DEL
+	FROM CONTACT
+	WHERE CONTACT_SEQ=#{seq}
+</select>
+
 </mapper>

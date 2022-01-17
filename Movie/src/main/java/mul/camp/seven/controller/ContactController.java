@@ -28,7 +28,7 @@ private static Logger logger = LoggerFactory.getLogger(ContactController.class);
 		logger.info("ContactController contact()" + new Date());
 		
 		List<ContactDto> list = service.contact(param);
-		model.addAttribute("bbslist", list);
+		model.addAttribute("contact", list);
 		
 		return "contact";
 	}
@@ -52,5 +52,12 @@ private static Logger logger = LoggerFactory.getLogger(ContactController.class);
 		}
 		
 		return "redirect:/bbslist.do";
+	}
+	
+	@RequestMapping(value="contactanswerAf.do", method=RequestMethod.GET)
+	public String contactanswerAf() {
+		logger.info("ContactController contactanswerAf()" + new Date());
+		
+		return "redirect:/contact.do";
 	}
 }
