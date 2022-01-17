@@ -11,5 +11,6 @@
 <h1>bbslist</h1>
 <h1>로그인 성공! 😊<h1>
 
+<a href="contact.do">Contact us</a>
 </body>
 </html>

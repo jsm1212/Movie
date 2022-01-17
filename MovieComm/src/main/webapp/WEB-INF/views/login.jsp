@@ -4,115 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>게시판 Login 페이지</title>
 
-<!-- CSS -->
 <style type="text/css">
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-	
-	body {
-		width: 100%;
-		height: 100vh;
-		display: flex;
-		background: rgba(0, 0, 0, 0.1);
-	}
-	
-	a {
-		text-decoration: none;
-		color: black;
-	}
-	
-	li {
-		list-style: none;
-	}
-	
-	.wrap {
-		width: 100%;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	
-	.login {
-		width: 30%;
-		height: 600px;
-		background: white;
-		border-radius: 20px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-	}
-	
-	h2 {
-		color: tomato;
-		font-size: 2em;
-	}
-	
-	.login_id {
-		margin-top: 20px;
-		width: 80%;
-	}
-	
-	.login_id input {
-		width: 100%;
-		height: 50px;
-		border-radius: 30px;
-		margin-top: 10px;
-		padding: 0px 20px;
-		border: 1px solid lightgrey;
-		outline: none;
-	}
-	
-	.remember_id {
-		margin-top: 0px;
-		width: 80%;
-	}
-	
-	.login_pwd {
-		margin-top: 30px;
-		width: 80%;
-	}
-	
-	.login_pwd input {
-		width: 100%;
-		height: 50px;
-		border-radius: 30px;
-		margin-top: 10px;
-		padding: 0px 20px;
-		border: 1px solid lightgray;
-		outline: none;
-	}
-	
-	.login_etc {
-		padding: 10px;
-		width: 80%;
-		font-size: 14px;
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		font-weight: bold;
-	}
-	
-	.submit {
-		margin-top: 40px;
-		width: 80%;
-	}
-	
-	button {
-		cursor: pointer;
-		width: 100%;
-		font-size: 16px;
-		padding: 7px 20px;
-	}
+.center{
+	margin: auto;		/* margin: 바깥쪽 여백 */
+	width: 60%;
+	border: 3px solid #0000ff; 
+	padding: 10px;
+}
 </style>
+
 
 <!-- jquery 사용을 위해 추가 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -121,54 +23,50 @@
 
 </head>
 <body>
-<form class="wrap" action="loginAf.do" id="frm" method="post">
-	<div class="wrap">
-		<div class="login">
-			<h2>Login</h2>
-			
-				<div class="login_id">
-					<label for="id">아이디</label>
-					<div>
-					<input type="text" id="id" name="id">
-					</div>
-				</div>
-				<div class="remember_id">
-					<div class="checkbox">
-					<input type="checkbox" id="chk_save_id">아이디 저장
-					</div>
-				</div>
-				
-				<div class="login_pwd">
-					<label for="id">비밀번호</label>
-					<div>
-					<input type="password" id="pwd" name="pwd">
-					</div>
-				</div>
-				
-				<div class="login_etc">
-					<div class="forgot_id">
-					<a href="idFind.do">ID 찾기</a> &nbsp;
-					</div>
-					<div class="forgot_pwd">
-					<a href="pwdFind.do">PW 찾기</a> &nbsp;
-					</div>
-					<div class="regi">
-					<a href="regi.do">회원가입</a>
-					</div>
-				</div>
-				
-				<div class="submit">
-					<button type="button" onclick="login()">로그인</button>
-				</div>
-		</div>
-	</div>
+
+<h2>로그인</h2>
+
+<div class="center">								<!-- div는 태그를 단체로 묶어줄 때 사용하며 border가 자동으로 들어가있다. -->
+<form action="loginAf.do" id="frm" method="post">
+
+<table border="1">
+<tr>
+	<th>아이디</th>
+	<td>
+		<input type="text" id="id" name="id" size="20"><br>
+		<input type="checkbox" id="chk_save_id">아이디 저장
+	</td>
+</tr>
+<tr>
+	<th>패스워드</th>
+	<td>
+		<input type="password" id="pwd" name="pwd" size="20">
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<!-- * 로그인 -->
+		<!-- id, pwd를 입력하지 않는다면 넘어갈 수 없도록 button 설정: 클릭 시 login() 함수 실행 -->
+		<button type="button" onclick="login()">로그인</button>
+		
+		<a href="idFind.do">아이디 찾기</a> &nbsp;&nbsp;
+		<a href="pwdFind.do">패스워드 찾기</a>
+	</td>
+</tr>
+<tr>
+	<td style=border:none>
+		<a href="regi.do">회원가입</a>
+	</td>
+</tr>
+</table>
+
 </form>
-
-
-<script type="text/javascript">
+</div>
+<a href="bbslist.do">bbslist</a>
 <!-- * 로그인: 로그인 버튼 클릭 시 id, pw 작성했는지 확인 후 데이터 전달 -->
+<script type="text/javascript">
 function login() {
-	if($("#id").val().trim() == ""){	
+	if($("#id").val().trim() == ""){	// trim: 중간을 제외한 양끝 공백 제거
 		alert("아이디를 입력하세요.")
 	}
 	else if($("#pwd").val().trim() == ""){
@@ -179,7 +77,12 @@ function login() {
 	}
 }
 
-<!--cookie 저장을 통해 ID 저장 기능 구현 --> 
+<!--cookie 저장을 통해 ID 저장 기능 구현 -->
+/*  WEB 저장공간
+ *  1) session: web sever의 저장공간(Back), java 언어 사용, login한 사용자의 정보를 저장 시 사용(object를 저장할 수 있다.)
+ *  2) cookie: web client의 저장공간(Front), javascript 언어 사용, id/pw/방문횟수 등을 String으로 저장할 수 있다.
+ */
+ 
  let user_id = $.cookie("user_id");			// cookie에서 user_id라는 이름의 데이터를 산출한다. == Model에서는 model.addattribute("list", list) 사용방식과 동일
  
  if(user_id != null){
@@ -212,6 +115,9 @@ function login() {
 	}
  });
 </script>
+
+
+
 
 </body>
 </html>

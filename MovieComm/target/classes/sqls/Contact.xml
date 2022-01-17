@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="Contact">
+	<select id="Contact" parameterType="mul.camp.seven.dto.ContactParam" resultType="mul.camp.seven.dto.ContactDto">
+	SELECT CONTACT_SEQ, ID, TITLE, CONTENT, ANSWER, WDATE, DEL
+	FROM CONTACT
+	<if test="choice != null and choice != '' and search != null and search != ''">
+		<if test="choice == 'title'">
+			WHERE TITLE LIKE '%'||#{search}||'%'
+		</if>
+		<if test="choice == 'content'">
+			WHERE CONTENT LIKE '%'||#{search}||'%'
+		</if>
+		<if test="choice == 'writer'">
+			WHERE ID=#{search}
+		</if>	
+	</if>
+</select>
+
+<insert id="contactwrite" parameterType="mul.camp.seven.dto.ContactDto">
+	INSERT INTO BBS(CONTACT_SEQ, ID, TITLE, CONTENT, ANSWER, WDATE, DEL)
+	VALUES(CONTACT_SEQ.NEXTVAL, #{id}, #{title}, #{content}, 0, SYSDATE, 0)
+</insert>
+
+<select id="contactget" parameterType="java.lang.Integer" resultType="mul.camp.seven.dto.ContactDto">
+	SELECT CONTACT_SEQ, ID, TITLE, CONTENT, ANSWER, WDATE, DEL
+	FROM CONTACT
+	WHERE CONTACT_SEQ=#{seq}
+</select>
+
+<delete id="contactdelete" parameterType="java.lang.Integer">
+	DELETE FROM CONTACT
+	WHERE SEQ=#{seq}
+</delete>
+
+</mapper>
