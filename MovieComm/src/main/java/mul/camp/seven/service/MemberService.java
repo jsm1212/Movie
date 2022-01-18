@@ -18,4 +18,10 @@ public interface MemberService {
 	
 	/* [loginAf.do] > 로그인 */
 	MemberDto login(MemberDto dto);
+	
+	/* [userEditAf.do] > 회원정보 수정 */
+	boolean updateMember(MemberDto dto);
+	
+	/* [userInfo.do] > 회원정보 수정에 따른 session값 재설정 */
+	MemberDto userInfo(String id);
 }

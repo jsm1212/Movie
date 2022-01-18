@@ -77,7 +77,6 @@
                      <label for="id">아이디</label>
                      <input type="text" class="form-control" name="id" id="id">
                      <!-- * ID 중복확인 -->
-                     <input type="button" id="btn" value="중복확인">
                      <label id="idcheck" style="font-size: 13px"></label>
                   </div>
 
@@ -85,7 +84,6 @@
                      <label for="nickname">닉네임</label>
                      <input type="text" class="form-control" name="nickname" id="nickname">
                      <!-- * 닉네임 중복확인 -->
-                     <input type="button" id="nickbtn" value="중복확인">
                      <label id="nickcheck" style="font-size: 13px"></label>
                   </div>
                   
@@ -117,7 +115,6 @@
                   <label for="email">이메일</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
                   <!-- * 이메일 중복확인 -->
-                  <input type="button" id="emailbtn" value="중복확인">
                   <label id="emailcheck" style="font-size: 13px"></label>
                </div>
                
@@ -134,11 +131,9 @@ var id_check = false;			/* id 중복확인 결과값 저장을 위한 javascript
 var nick_check = false;
 var email_check = false;
 
-/* <!-- * id 중복확인: Ajax 사용(비동기 처리) --> */
-$(document).ready(function () {
-	$("#btn").click(function () {
-//		alert("ID 중복확인 버튼(btn) 동작 확인용");
-
+$(document).ready(function() {
+	/* [ID] id 중복확인: Ajax 사용(비동기 처리) */
+	$("#id").blur(function() {
 		$.ajax({
 			url: "idcheck.do", 				// controller 내 incheck.do로 이동
 			type: "post",
@@ -148,7 +143,7 @@ $(document).ready(function () {
 				if(msg == "yes"){
 					$("#idcheck").css("color", "#0000ff");		// id 중복확인 결과창 p태그의 id="idcheck"
 					$("#idcheck").html("사용할 수 있는 ID입니다.")
-					id_check = true;		// id 중복확인 결과가 통과인 경우 전역변수 id_check를 true로 저장
+					id_check = true;							// id 중복확인 결과가 통과인 경우 전역변수 id_check를 true로 저장
 				}
 				else {
 					$("#idcheck").css("color", "#ff0000");
@@ -163,9 +158,8 @@ $(document).ready(function () {
 		})
 	});
 	
-	/* 닉네임 중복확인: Ajax 사용(비동기 처리) */
-	$("#nickbtn").click(function () {
-
+	/* [NICKNAME] 닉네임 중복확인: Ajax 사용(비동기 처리) */
+	$("#nickname").blur(function() {
 		$.ajax({
 			url: "nickcheck.do", 				
 			type: "post",
@@ -189,9 +183,8 @@ $(document).ready(function () {
 		})
 	});
 	
-	/* 이메일 중복확인: Ajax 사용(비동기 처리) */
-	$("#emailbtn").click(function () {
-
+	/* [EMAIL] 이메일 중복확인: Ajax 사용(비동기 처리) */
+	$("#email").blur(function() {
 		$.ajax({
 			url: "emailcheck.do", 				
 			type: "post",

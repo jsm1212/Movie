@@ -44,7 +44,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.login(dto);
 	}
 
-	
+	/* [userEditAf.do] > 회원정보 수정 */
+	@Override
+	public boolean updateMember(MemberDto dto) {
+		int count = dao.updateMember(dto);
+		
+		return count>0?true:false;
+	}
 
-	
+	/* [userInfo.do] > 회원정보 수정에 따른 session값 재설정 */
+	@Override
+	public MemberDto userInfo(String id) {
+		return dao.userInfo(id);
+	}
+
 }
