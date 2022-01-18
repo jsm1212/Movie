@@ -87,16 +87,40 @@
 					<input type="submit" value="회원정보 수정">
 				</form>
 				
-				<!-- 게시글 불러오기 -->
+				<br>
+				<br>
+				
+				<!-- 게시글 불러오기 (미완) -->
 				<div>
 					<table class="table table-hover" style="width: 1000px">
+					<thead>
+						<tr>
+							<th>No.</th><th>제목</th><th>작성자</th><th>작성일자</th><th>조회수</th>
+						</tr>
+					</thead>
 					
+					<tbody>
+						<tr>
+							<td id="seq"></td>
+						</tr>
+						<tr>
+							<td id="title"></td>
+						</tr>
+						<tr>
+							<td id="id"></td>
+						</tr>
+						<tr>
+							<td id="wdate"></td>
+						</tr>
+						<tr>
+							<td id="readcount"></td>
+						</tr>
+					</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 </body>
 </html>

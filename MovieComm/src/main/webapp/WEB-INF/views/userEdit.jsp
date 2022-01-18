@@ -39,7 +39,6 @@
 							<label for="nickname">닉네임</label>
 							<input type="text" class="form-control" name="nickname" id="nickname" value="<%=user.getNickname() %>">
 							<!-- 닉네임 중복확인 -->
-							<!-- <input type="button" id="nickbtn" value="중복확인"> -->
 							<label id="nickcheck" style="font-size: 13px"></label>
 						</div>
 						
@@ -77,7 +76,6 @@
 						<label for="email">이메일</label>
 						<input type="email" class="form-control" name="email" id="email" value="<%=user.getEmail() %>">
 						<!-- 이메일 중복확인 -->
-						<!-- <input type="button" id="emailbtn" value="중복확인"> -->
 						<label id="emailcheck" style="font-size: 13px"></label>
 					</div>
 					
@@ -146,61 +144,6 @@ $(document).ready(function() {
 		})
 	});
 });
-
-/* $(document).ready(function () {
-	
-	/* 1) 닉네임 중복확인: Ajax 사용(비동기 처리) */
-	/* $("#nickbtn").click(function () {
-
-		$.ajax({
-			url: "nickcheck.do", 				
-			type: "post",
-			data: { "nickname":$("#nickname").val().trim() },
-			success:function(msg){
-				if(msg == "yes"){
-					$("#nickcheck").css("color", "#0000ff");
-					$("#nickcheck").html("사용할 수 있는 닉네임입니다.")
-					nick_check = true;
-				}
-				else {
-					$("#nickcheck").css("color", "#ff0000");
-					$("#nickcheck").html("사용중인 닉네임입니다.")
-					$("#nickname").val("");	
-					nick_check = false;
-				}
-			},
-			error:function(){
-				alert("ajax 닉네임 중복확인 ERROR 발생");
-			}
-		})
-	}); */
-	
-	/* 2) 이메일 중복확인: Ajax 사용(비동기 처리) */
-	/* $("#emailbtn").click(function () {
-
-		$.ajax({
-			url: "emailcheck.do", 				
-			type: "post",
-			data: { "email":$("#email").val().trim() },
-			success:function(msg){
-				if(msg == "yes"){
-					$("#emailcheck").css("color", "#0000ff");
-					$("#emailcheck").html("사용할 수 있는 이메일입니다.")
-					email_check = true;
-				}
-				else {
-					$("#emailcheck").css("color", "#ff0000");
-					$("#emailcheck").html("사용중인 이메일입니다.")
-					$("#email").val("");	
-					email_check = false;
-				}
-			},
-			error:function(){
-				alert("ajax 이메일 중복확인 ERROR 발생");
-			}
-		})
-	});
-}); */
 
 <!-- (Front) 정보수정 데이터 유효성 검사 -->
 function userEdit() {

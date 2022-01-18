@@ -141,6 +141,13 @@ public class MyPageController {
 		return "redirect:/userEdit.do";
 	}
 	
-	/* [] > 작성한 자유게시판 불러오기 */
+	/* [movieBbslist.do] > 작성한 자유게시판(DB_MOVIEBBS) 불러오기, Ajax 사용(비동기처리) */
+	@ResponseBody
+	@RequestMapping(value = "movieBbslist.do", method=RequestMethod.POST)
+	public String movieBbslist() {
+		logger.info("MyPageController movieBbslist()" + new Date());
+		
+		return "";
+	}
 	
 }
