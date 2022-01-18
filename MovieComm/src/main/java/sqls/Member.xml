@@ -40,4 +40,20 @@
  	WHERE ID=#{id} AND PWD=#{pwd}
 </select>
 
+
+
+<!-- [userEditAf.do] > 회원정보 수정 -->
+<update id="updateMember" parameterType="mul.camp.seven.dto.MemberDto">
+	UPDATE LOGINMEMBER
+	SET PWD=#{pwd}, NAME=#{name}, NICKNAME=#{nickname}, AGE=#{age}, GENDER=#{gender}, EMAIL=#{email}
+	WHERE ID=#{id}
+</update>
+
+<!-- [userInfo.do] > 회원정보 수정에 따른 session값 재설정 -->
+<select id="userInfo" parameterType="java.lang.String" resultType="mul.camp.seven.dto.MemberDto">
+	SELECT ID, NAME, NICKNAME, AGE, GENDER, EMAIL, REGI_DATE
+ 	FROM LOGINMEMBER
+ 	WHERE ID=#{id}
+</select>
+
 </mapper>

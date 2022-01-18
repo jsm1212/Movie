@@ -153,7 +153,7 @@
 					<a href="pwdFind.do">PW 찾기</a> &nbsp;
 					</div>
 					<div class="regi">
-					<a href="regi.do">회원가입</a>
+					<a href="regi.do">회원가입</a> &nbsp;
 					</div>
 				</div>
 				

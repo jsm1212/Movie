@@ -44,7 +44,16 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne(ns + "login", dto);
 	}
 
-	
+	/* [userEditAf.do] > 회원정보 수정 */
+	@Override
+	public int updateMember(MemberDto dto) {
+		return session.update(ns + "updateMember", dto);
+	}
 
-	
+	/* [userInfo.do] > 회원정보 수정에 따른 session값 재설정 */
+	@Override
+	public MemberDto userInfo(String id) {
+		return session.selectOne(ns + "userInfo", id);
+	}
+
 }
